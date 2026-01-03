@@ -1,4 +1,7 @@
 // app/sitemap.ts
+export const dynamic = "force-static"; // <- obrigatório no static export
+export const revalidate = 86400; // <- opcional (regera 1x/dia)
+
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -10,8 +13,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			changeFrequency: "weekly",
 			priority: 1,
 		},
-		// adicione rotas estáticas se quiser:
-		// { url: `${base}/whatsapp`, changeFrequency: "monthly", priority: 0.8 },
-		// { url: `${base}/pix`, changeFrequency: "monthly", priority: 0.8 },
 	];
 }
