@@ -1,5 +1,7 @@
+// app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -37,8 +39,29 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
 	return (
 		<html lang="pt-BR">
+			<head>
+				{/* Google tag (gtag.js) */}
+				{GA_ID && (
+					<>
+						<Script
+							src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+							strategy="afterInteractive"
+						/>
+						<Script id="gtag-init" strategy="afterInteractive">
+							{`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+						</Script>
+					</>
+				)}
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 text-neutral-900`}
 			>
