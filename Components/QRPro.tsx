@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import ContentSections from "./ContentSection";
 import PixForm from "./qr/forms/PixForm";
 import UrlForm from "./qr/forms/UrlForm";
 import WhatsAppForm from "./qr/forms/WhatsAppForm";
@@ -110,6 +111,7 @@ export default function QRPro() {
 						ecc={ecc}
 					/>
 				</div>
+				<ContentSections />
 			</div>
 		</div>
 	);

@@ -1,4 +1,5 @@
 // app/layout.tsx
+import SiteHeader from "@/Components/SiteHeader";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
@@ -65,6 +66,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 text-neutral-900`}
 			>
+				<SiteHeader />
 				{children}
 			</body>
 		</html>
