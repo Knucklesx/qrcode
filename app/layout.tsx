@@ -28,6 +28,8 @@ export const metadata: Metadata = {
 	},
 	alternates: { canonical: "https://gerarqr.com.br/" },
 	icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+	// 👉 AdSense meta
+	other: { "google-adsense-account": "ca-pub-10842908666669388" },
 };
 
 export const viewport: Viewport = {
@@ -45,26 +47,34 @@ export default function RootLayout({
 	return (
 		<html lang="pt-BR">
 			<head>
-				{/* Google tag (gtag.js) */}
+				{/* Google Analytics (se existir) */}
 				{GA_ID && (
 					<>
 						<Script
 							src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 							strategy="afterInteractive"
 						/>
-						<Script id="gtag-init" strategy="afterInteractive">
-							{`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}');
-              `}
-						</Script>
+						<Script id="gtag-init" strategy="afterInteractive">{`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `}</Script>
 					</>
 				)}
+
+				{/* 👉 AdSense Auto Ads (cole aqui) */}
+				<Script
+					id="adsbygoogle-init"
+					strategy="afterInteractive"
+					async
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-10842908666669388"
+					crossOrigin="anonymous"
+				/>
 			</head>
+
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 text-neutral-900`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-neutral-900`}
 			>
 				<SiteHeader />
 				{children}
